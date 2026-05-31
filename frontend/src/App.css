@@ -1683,3 +1683,388 @@ button {
     width: 260px;
   }
 }
+
+/* =========================
+   RESPONSIVIDADE EXTRA - MOBILE
+   Cole este bloco no FINAL do App.css
+========================= */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  /* Sidebar vira topo no celular */
+  .sidebar,
+  .menu-aberto .sidebar,
+  .menu-fechado .sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ece7f4;
+    padding: 12px;
+  }
+
+  .topo-sidebar {
+    margin-bottom: 10px;
+  }
+
+  .menu-fechado .topo-sidebar,
+  .menu-aberto .topo-sidebar {
+    justify-content: space-between;
+  }
+
+  .logo h1 {
+    font-size: 26px;
+  }
+
+  /* Menu fechado no celular: vira barra horizontal com ícones */
+  .menu-fechado .menu {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .menu-fechado .item-menu {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .menu-fechado .categoria {
+    display: none;
+  }
+
+  /* Menu aberto no celular: lista vertical mais compacta */
+  .menu-aberto .menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .menu-aberto .item-menu {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .categoria {
+    margin: 12px 6px 6px;
+  }
+
+  /* Área principal */
+  .area-principal {
+    width: 100%;
+  }
+
+  .topbar {
+    height: auto;
+    min-height: 66px;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .campo-busca {
+    width: 100%;
+    max-width: none;
+    flex: 1;
+  }
+
+  .acoes-topbar {
+    gap: 8px;
+  }
+
+  .botao-topbar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .botao-perfil {
+    height: 38px;
+    padding: 0 8px;
+  }
+
+  .dropdown-perfil {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 260px;
+  }
+
+  .conteudo {
+    padding: 16px;
+  }
+
+  /* Cabeçalhos */
+  .cabecalho-pagina,
+  .cabecalho-dashboard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cabecalho-pagina h2,
+  .cabecalho-dashboard h2 {
+    font-size: 24px;
+  }
+
+  .cabecalho-pagina p,
+  .cabecalho-dashboard p {
+    font-size: 13px;
+  }
+
+  .botao-periodo,
+  .botao-roxo,
+  .botao-secundario {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Cards */
+  .cards-resumo,
+  .cards-topo-dashboard {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card-resumo {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .card-resumo strong {
+    font-size: 22px;
+  }
+
+  .icone-card {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Dashboard */
+  .painel-dashboard {
+    gap: 14px;
+  }
+
+  .bloco-dashboard,
+  .lista-card,
+  .painel-grande,
+  .painel-lateral {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .indicadores-grid,
+  .bloco-inferior-dashboard,
+  .grid-dashboard,
+  .grid-relatorios {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .grafico-fake {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .item-lista-dashboard {
+    gap: 10px;
+  }
+
+  .tempo-item-lista {
+    display: none;
+  }
+
+  .acoes-rapidas-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  /* Filtros */
+  .grupo-filtros-tabela,
+  .barra-relatorios,
+  .filtros-usuarios,
+  .barra-filtros,
+  .barra-filtros-conteudos,
+  .acoes-logs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .grupo-filtros-tabela input,
+  .grupo-filtros-tabela select,
+  .barra-relatorios select,
+  .barra-relatorios button,
+  .filtros-usuarios input,
+  .filtros-usuarios select,
+  .filtros-usuarios button,
+  .barra-filtros input,
+  .barra-filtros button,
+  .barra-filtros-conteudos select,
+  .barra-filtros-conteudos button,
+  .acoes-logs button {
+    width: 100%;
+  }
+
+  .filtros-usuarios button:last-child {
+    margin-left: 0;
+  }
+
+  /* Tabelas: cria rolagem horizontal sem quebrar o layout */
+  .painel-grande {
+    overflow-x: auto;
+  }
+
+  .tabela-admin {
+    min-width: 720px;
+  }
+
+  .tabela-admin th,
+  .tabela-admin td {
+    padding: 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .rodape-tabela,
+  .rodape-logs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Painel lateral de detalhes vai para baixo */
+  .layout-usuarios,
+  .layout-usuarios.com-detalhes,
+  .layout-conteudos,
+  .layout-conteudos.com-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .detalhes-usuario,
+  .preview-conteudo {
+    width: 100%;
+  }
+
+  .avatar-grande {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  /* Formulários */
+  .grid-form-admin {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .acoes-form-admin {
+    grid-column: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .acoes-form-admin button {
+    width: 100%;
+    min-width: auto;
+  }
+
+  /* Relatórios */
+  .grafico-barras {
+    height: 220px;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .barra-item {
+    min-width: 54px;
+  }
+
+  .linha-relatorio-topo {
+    gap: 12px;
+  }
+
+  .linha-relatorio-topo strong {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .acoes-topbar {
+    justify-content: flex-end;
+  }
+
+  .dropdown-perfil {
+    right: 0;
+    width: calc(100vw - 32px);
+  }
+
+  .conteudo {
+    padding: 12px;
+  }
+
+  .cabecalho-pagina h2,
+  .cabecalho-dashboard h2 {
+    font-size: 22px;
+  }
+
+  .card-resumo {
+    align-items: flex-start;
+  }
+
+  .card-resumo strong {
+    font-size: 20px;
+  }
+
+  .painel-titulo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .painel-titulo button,
+  .painel-titulo select {
+    width: 100%;
+  }
+
+  .mensagem-acao-dashboard {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .abas-conteudos,
+  .abas-logs,
+  .abas-modal {
+    overflow-x: auto;
+    gap: 18px;
+  }
+
+  .abas-conteudos button,
+  .abas-logs button,
+  .abas-modal button {
+    white-space: nowrap;
+  }
+
+  .botoes-midia button {
+    align-items: flex-start;
+  }
+
+  .icone-midia {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}
