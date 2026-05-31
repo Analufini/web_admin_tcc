@@ -1,13 +1,32 @@
 import { useState } from "react";
 import "./App.css";
 
-import Dashboard from "./paginas/Dashboard";
-import Usuarios from "./paginas/Usuarios";
-import Denuncias from "./paginas/Denuncias";
-import Conteudos from "./paginas/Conteudos";
-import Suporte from "./paginas/Suporte";
-import Administradores from "./paginas/Administradores";
-import Logs from "./paginas/Logs";
+import {
+  Home,
+  LayoutDashboard,
+  Users,
+  ShieldCheck,
+  TriangleAlert,
+  MessageCircle,
+  BookOpen,
+  Headphones,
+  BarChart3,
+  FileClock,
+  Settings,
+  Menu,
+  Bell,
+  UserCircle,
+  ChevronDown,
+  Search
+} from "lucide-react";
+
+import Dashboard from "./pages/Dashboard";
+import Usuarios from "./pages/Usuarios";
+import Denuncias from "./pages/Denuncias";
+import Conteudos from "./pages/Conteudos";
+import Suporte from "./pages/Suporte";
+import Administradores from "./pages/Administradores";
+import Logs from "./pages/Logs";
 
 const API = "http://localhost:3001/api";
 
@@ -48,12 +67,11 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         {menuAberto && (
           <div className="logo">
             <h1>orami</h1>
-            <span>Painel de Controle</span>
           </div>
         )}
 
         <button className="botao-menu" onClick={() => setMenuAberto(!menuAberto)}>
-          ☰
+          <Menu size={22} />
         </button>
       </div>
 
@@ -61,7 +79,15 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         {menuAberto && <p className="categoria">GERAL</p>}
 
         <BotaoMenu
-          icone="🏠"
+          icone={<Home size={19} />}
+          texto="Início"
+          ativo={pagina === "dashboard"}
+          menuAberto={menuAberto}
+          onClick={() => setPagina("dashboard")}
+        />
+
+        <BotaoMenu
+          icone={<LayoutDashboard size={19} />}
           texto="Dashboard"
           ativo={pagina === "dashboard"}
           menuAberto={menuAberto}
@@ -71,7 +97,7 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         {menuAberto && <p className="categoria">GERENCIAMENTO</p>}
 
         <BotaoMenu
-          icone="👥"
+          icone={<Users size={19} />}
           texto="Usuários"
           ativo={pagina === "usuarios"}
           menuAberto={menuAberto}
@@ -79,25 +105,15 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         />
 
         <BotaoMenu
-          icone="📚"
-          texto="Conteúdos"
-          ativo={pagina === "conteudos"}
-          menuAberto={menuAberto}
-          onClick={() => setPagina("conteudos")}
-        />
-
-        <BotaoMenu
-          icone="🛡️"
+          icone={<ShieldCheck size={19} />}
           texto="Administradores"
           ativo={pagina === "administradores"}
           menuAberto={menuAberto}
           onClick={() => setPagina("administradores")}
         />
 
-        {menuAberto && <p className="categoria">MODERAÇÃO</p>}
-
         <BotaoMenu
-          icone="⚠️"
+          icone={<TriangleAlert size={19} />}
           texto="Denúncias"
           ativo={pagina === "denuncias"}
           menuAberto={menuAberto}
@@ -105,34 +121,57 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         />
 
         <BotaoMenu
-          icone="🎧"
+          icone={<MessageCircle size={19} />}
+          texto="Fóruns e Comunidades"
+          ativo={false}
+          menuAberto={menuAberto}
+          onClick={() => alert("Página planejada para etapa futura.")}
+        />
+
+        <BotaoMenu
+          icone={<BookOpen size={19} />}
+          texto="Conteúdos Informativos"
+          ativo={pagina === "conteudos"}
+          menuAberto={menuAberto}
+          onClick={() => setPagina("conteudos")}
+        />
+
+        <BotaoMenu
+          icone={<Headphones size={19} />}
           texto="Suporte"
           ativo={pagina === "suporte"}
           menuAberto={menuAberto}
           onClick={() => setPagina("suporte")}
         />
 
+        {menuAberto && <p className="categoria">RELATÓRIOS</p>}
+
+        <BotaoMenu
+          icone={<BarChart3 size={19} />}
+          texto="Relatórios"
+          ativo={false}
+          menuAberto={menuAberto}
+          onClick={() => alert("Relatórios ficarão para uma próxima etapa.")}
+        />
+
         {menuAberto && <p className="categoria">SISTEMA</p>}
 
         <BotaoMenu
-          icone="📋"
+          icone={<FileClock size={19} />}
           texto="Segurança e Logs"
           ativo={pagina === "logs"}
           menuAberto={menuAberto}
           onClick={() => setPagina("logs")}
         />
+
+        <BotaoMenu
+          icone={<Settings size={19} />}
+          texto="Configurações"
+          ativo={false}
+          menuAberto={menuAberto}
+          onClick={() => alert("Configurações ficarão para uma próxima etapa.")}
+        />
       </nav>
-
-      <div className="usuario-logado">
-        <div className="avatar">G</div>
-
-        {menuAberto && (
-          <div>
-            <strong>Giovanna Torres</strong>
-            <span>Administradora</span>
-          </div>
-        )}
-      </div>
     </aside>
   );
 }
@@ -147,13 +186,55 @@ function BotaoMenu({ icone, texto, ativo, menuAberto, onClick }) {
 }
 
 function Topbar() {
+  const [perfilAberto, setPerfilAberto] = useState(false);
+
   return (
     <header className="topbar">
-      <input type="text" placeholder="Pesquisar no painel..." />
+      <div className="campo-busca">
+        <Search size={18} />
+        <input type="text" placeholder="Buscar no painel..." />
+      </div>
 
       <div className="acoes-topbar">
-        <button>🔔</button>
-        <button>👤</button>
+        <button className="botao-topbar">
+          <Bell size={20} />
+        </button>
+
+        <div className="perfil-topbar">
+          <button
+            className="botao-perfil"
+            onClick={() => setPerfilAberto(!perfilAberto)}
+          >
+            <UserCircle size={25} />
+            <ChevronDown size={16} />
+          </button>
+
+          {perfilAberto && (
+            <div className="dropdown-perfil">
+              <div className="perfil-cabecalho">
+                <UserCircle size={42} />
+                <div>
+                  <strong>Giovanna Torres</strong>
+                  <span>Administradora</span>
+                </div>
+              </div>
+
+              <div className="perfil-info">
+                <p>
+                  <strong>E-mail:</strong> giovanna@orami.com
+                </p>
+                <p>
+                  <strong>Cargo:</strong> Administradora
+                </p>
+                <p>
+                  <strong>Status:</strong> Ativa
+                </p>
+              </div>
+
+              <button className="botao-sair">Sair</button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
