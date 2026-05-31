@@ -26,6 +26,7 @@ import Denuncias from "./pages/Denuncias";
 import Conteudos from "./pages/Conteudos";
 import Suporte from "./pages/Suporte";
 import Administradores from "./pages/Administradores";
+import Relatorios from "./pages/Relatorios";
 import Logs from "./pages/Logs";
 
 const API = "http://localhost:3001/api";
@@ -47,12 +48,13 @@ function App() {
         <Topbar />
 
         <section className="conteudo">
-          {pagina === "dashboard" && <Dashboard />}
+          {pagina === "dashboard" && <Dashboard setPagina={setPagina} />}
           {pagina === "usuarios" && <Usuarios />}
           {pagina === "denuncias" && <Denuncias />}
           {pagina === "conteudos" && <Conteudos />}
           {pagina === "suporte" && <Suporte />}
           {pagina === "administradores" && <Administradores />}
+          {pagina === "relatorios" && <Relatorios setPagina={setPagina} />}
           {pagina === "logs" && <Logs />}
         </section>
       </main>
@@ -121,14 +123,6 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         />
 
         <BotaoMenu
-          icone={<MessageCircle size={19} />}
-          texto="Fóruns e Comunidades"
-          ativo={false}
-          menuAberto={menuAberto}
-          onClick={() => alert("Página planejada para etapa futura.")}
-        />
-
-        <BotaoMenu
           icone={<BookOpen size={19} />}
           texto="Conteúdos Informativos"
           ativo={pagina === "conteudos"}
@@ -149,9 +143,9 @@ function Sidebar({ pagina, setPagina, menuAberto, setMenuAberto }) {
         <BotaoMenu
           icone={<BarChart3 size={19} />}
           texto="Relatórios"
-          ativo={false}
+          ativo={pagina === "relatorios"}
           menuAberto={menuAberto}
-          onClick={() => alert("Relatórios ficarão para uma próxima etapa.")}
+          onClick={() => setPagina("relatorios")}
         />
 
         {menuAberto && <p className="categoria">SISTEMA</p>}
@@ -214,14 +208,14 @@ function Topbar() {
               <div className="perfil-cabecalho">
                 <UserCircle size={42} />
                 <div>
-                  <strong>Giovanna Torres</strong>
+                  <strong>Ana Luiza</strong>
                   <span>Administradora</span>
                 </div>
               </div>
 
               <div className="perfil-info">
                 <p>
-                  <strong>E-mail:</strong> giovanna@orami.com
+                  <strong>E-mail:</strong> ana.luiza@orami.com
                 </p>
                 <p>
                   <strong>Cargo:</strong> Administradora
